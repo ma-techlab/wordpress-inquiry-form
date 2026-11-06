@@ -31,6 +31,7 @@ require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-repository.php';
 require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-spam-guard.php';
 require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-mailer.php';
 require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-form.php';
+require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-csv-exporter.php';
 require_once MVIM_PLUGIN_DIR . 'includes/admin/class-mvim-admin.php';
 
 // 有効化：テーブルを作る（FR-9）。無効化ではデータを残すため、無効化フックは登録しない.

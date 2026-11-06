@@ -38,6 +38,7 @@ final class MVIM_Plugin {
 		if ( is_admin() ) {
 			MVIM_Admin::register_hooks();
 			MVIM_Settings::register_hooks();
+			MVIM_Csv_Exporter::register_hooks();
 		}
 	}
 }
