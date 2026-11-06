@@ -18,3 +18,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'MVIM_VERSION', '0.1.0' );
+define( 'MVIM_DB_VERSION', '1.0.0' );
+define( 'MVIM_PLUGIN_FILE', __FILE__ );
+define( 'MVIM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'MVIM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
+require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-plugin.php';
+require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-installer.php';
+require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-settings.php';
+require_once MVIM_PLUGIN_DIR . 'includes/admin/class-mvim-admin.php';
+
+// 有効化：テーブルを作る（FR-9）。無効化ではデータを残すため、無効化フックは登録しない.
+register_activation_hook( __FILE__, array( 'MVIM_Installer', 'activate' ) );
+
+MVIM_Plugin::init();
