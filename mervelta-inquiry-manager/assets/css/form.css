@@ -1,0 +1,109 @@
+/*
+ * MERVELTA Inquiry Manager: 入力フォームの最低限の見た目。
+ *
+ * すべてのセレクタを :where() で包み、詳細度を 0 にしている。
+ * テーマや Elementor の指定があればそちらが優先され、見た目を邪魔しない。
+ * 文字の大きさ・書体・色の多くはテーマから受け継ぐ。
+ */
+
+:where(.mvim-form-wrap) {
+	box-sizing: border-box;
+	max-width: 40rem;
+}
+
+:where(.mvim-form-wrap) *,
+:where(.mvim-form-wrap) *::before,
+:where(.mvim-form-wrap) *::after {
+	box-sizing: inherit;
+}
+
+:where(.mvim-form-wrap .mvim-field) {
+	margin: 0 0 1.25em;
+}
+
+:where(.mvim-form-wrap .mvim-label) {
+	display: block;
+	margin-bottom: 0.35em;
+	font-weight: 600;
+}
+
+:where(.mvim-form-wrap .mvim-label--inline) {
+	display: inline;
+	margin-left: 0.4em;
+}
+
+:where(.mvim-form-wrap .mvim-badge) {
+	display: inline-block;
+	margin-left: 0.5em;
+	padding: 0.1em 0.5em;
+	border-radius: 3px;
+	font-size: 0.75em;
+	font-weight: 600;
+	line-height: 1.5;
+	vertical-align: middle;
+}
+
+:where(.mvim-form-wrap .mvim-badge--required) {
+	background: #b32d2e;
+	color: #fff;
+}
+
+:where(.mvim-form-wrap .mvim-badge--optional) {
+	background: #e0e0e0;
+	color: #1e1e1e;
+}
+
+:where(.mvim-form-wrap .mvim-input),
+:where(.mvim-form-wrap select) {
+	width: 100%;
+	max-width: 100%;
+}
+
+:where(.mvim-form-wrap .mvim-hint) {
+	margin: 0.3em 0 0;
+	font-size: 0.875em;
+	opacity: 0.8;
+}
+
+:where(.mvim-form-wrap .mvim-error) {
+	margin: 0.3em 0 0;
+	color: #b32d2e;
+	font-size: 0.875em;
+	font-weight: 600;
+}
+
+:where(.mvim-form-wrap .mvim-field--has-error) :where(input, select, textarea) {
+	border-color: #b32d2e;
+	outline-color: #b32d2e;
+}
+
+:where(.mvim-form-wrap .mvim-notice) {
+	margin: 0 0 1.5em;
+	padding: 0.75em 1em;
+	border-left: 4px solid;
+}
+
+:where(.mvim-form-wrap .mvim-notice p) {
+	margin: 0;
+}
+
+:where(.mvim-form-wrap .mvim-notice--error) {
+	border-color: #b32d2e;
+	background: #fcf0f1;
+	color: #1e1e1e;
+}
+
+:where(.mvim-form-wrap .mvim-notice--success) {
+	border-color: #00a32a;
+	background: #edfaef;
+	color: #1e1e1e;
+}
+
+:where(.mvim-form-wrap .mvim-notice__list) {
+	margin: 0.5em 0 0 1.25em;
+	padding: 0;
+}
+
+:where(.mvim-form-wrap .mvim-notice__list a) {
+	color: inherit;
+}

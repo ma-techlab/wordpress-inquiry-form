@@ -26,6 +26,11 @@ define( 'MVIM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-plugin.php';
 require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-installer.php';
 require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-settings.php';
+require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-fields.php';
+require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-repository.php';
+require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-spam-guard.php';
+require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-mailer.php';
+require_once MVIM_PLUGIN_DIR . 'includes/class-mvim-form.php';
 require_once MVIM_PLUGIN_DIR . 'includes/admin/class-mvim-admin.php';
 
 // 有効化：テーブルを作る（FR-9）。無効化ではデータを残すため、無効化フックは登録しない.

@@ -26,6 +26,23 @@ final class MVIM_Admin {
 	}
 
 	/**
+	 * 詳細画面の URL（通知メールのリンクにも使う）。
+	 *
+	 * @param int $id 問い合わせ ID.
+	 * @return string
+	 */
+	public static function detail_url( int $id ): string {
+		return add_query_arg(
+			array(
+				'page'   => MVIM_Plugin::MENU_SLUG,
+				'action' => 'view',
+				'id'     => $id,
+			),
+			admin_url( 'admin.php' )
+		);
+	}
+
+	/**
 	 * トップメニューと「一覧」サブメニューを追加する。
 	 *
 	 * @return void

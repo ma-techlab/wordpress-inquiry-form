@@ -33,6 +33,8 @@ final class MVIM_Plugin {
 		// ZIPでの上書き更新では有効化フックが動かないため、DBの版を毎回比べる.
 		add_action( 'plugins_loaded', array( 'MVIM_Installer', 'maybe_upgrade' ) );
 
+		MVIM_Form::register_hooks();
+
 		if ( is_admin() ) {
 			MVIM_Admin::register_hooks();
 			MVIM_Settings::register_hooks();
