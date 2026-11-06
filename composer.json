@@ -1,0 +1,23 @@
+{
+    "name": "mervelta/inquiry-manager",
+    "description": "MERVELTA Inquiry Manager: WordPress用の見積依頼・問い合わせ管理プラグイン（ポートフォリオ用デモ）",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.13",
+        "wp-coding-standards/wpcs": "^3.4",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "lint": "find mervelta-inquiry-manager -name '*.php' -print0 | xargs -0 -n1 php -l",
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf"
+    }
+}

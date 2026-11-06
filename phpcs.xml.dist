@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<ruleset name="MERVELTA Inquiry Manager">
+	<description>WordPress Coding Standards と PHP 8.3 以上の互換性を検査する。</description>
+
+	<!-- 検査対象はプラグイン本体のみ。 -->
+	<file>./mervelta-inquiry-manager</file>
+
+	<!-- 開発用・生成物は対象外。 -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/dist/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<!-- WordPress規約（Core + Docs + Extra）。一律の除外はしない。 -->
+	<rule ref="WordPress"/>
+
+	<!-- 要件書 4章：WordPress 6.5 以上。 -->
+	<config name="minimum_wp_version" value="6.5"/>
+
+	<!-- 要件書 5章：テキストドメイン。 -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="mervelta-inquiry-manager"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- 要件書 5章：関数・クラス・定数・オプション等の接頭辞。 -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="mvim"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- 要件書 4章：PHP 8.3 以上。 -->
+	<config name="testVersion" value="8.3-"/>
+	<rule ref="PHPCompatibilityWP"/>
+</ruleset>
