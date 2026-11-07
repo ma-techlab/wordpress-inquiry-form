@@ -4,6 +4,10 @@ WordPress 用の、見積依頼・問い合わせの受付と管理のプラグ�
 
 > **個人開発のデモです。** ポートフォリオ用に作ったもので、顧客に納品したものではありません。画面やデータはすべて架空のもの（例：「（例）株式会社サンプル精工」、`example.com` のメールアドレス）です。
 
+## ブラウザで試す（WordPress Playground）
+
+（公開後に、ここへ WordPress Playground のリンクを置きます。インストールせずに、ブラウザの中で架空のデータを使って試せます。）
+
 ## 目的
 
 製造業・建設業などの小規模事業者の WordPress サイトで、見積依頼と問い合わせを受け付け、取りこぼさずに対応状況を管理できるようにします。
@@ -134,4 +138,4 @@ bash bin/build-zip.sh           # dist/mervelta-inquiry-manager.zip
 
 ## ライセンス
 
-GPL-2.0-or-later
+GPL-2.0-or-later（GNU General Public License 第2版、またはそれ以降の版）。全文は [`LICENSE`](LICENSE) にあります。
