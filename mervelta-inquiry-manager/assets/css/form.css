@@ -53,10 +53,96 @@
 	color: #1e1e1e;
 }
 
+/*
+ * 入力欄・選択欄。
+ * .mvim-input は text・email・tel・textarea に付けている（ハニーポットの欄には付けていない）。
+ * 文字 #1e1e1e と背景 #fff のコントラスト比は約16.7:1。枠線 #757575 と背景は約4.6:1。
+ */
 :where(.mvim-form-wrap .mvim-input),
 :where(.mvim-form-wrap select) {
 	width: 100%;
 	max-width: 100%;
+	min-height: 2.75em;
+	margin: 0;
+	padding: 0.6em 0.75em;
+	border: 1px solid #757575;
+	border-radius: 4px;
+	background-color: #fff;
+	color: #1e1e1e;
+	font: inherit;
+	line-height: 1.5;
+}
+
+:where(.mvim-form-wrap textarea.mvim-input) {
+	min-height: 10em;
+	resize: vertical;
+}
+
+/* フォーカスの輪郭線。キーボードで操作する人のため、outline は消さない（#2271b1 と白は約5.2:1）. */
+:where(.mvim-form-wrap .mvim-input:focus),
+:where(.mvim-form-wrap select:focus) {
+	border-color: #2271b1;
+	outline: 2px solid #2271b1;
+	outline-offset: 1px;
+}
+
+/* 同意のチェックボックス：ラベルと縦位置をそろえ、エラーの文は次の行に出す. */
+:where(.mvim-form-wrap .mvim-field--checkbox) {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.3em 0.5em;
+}
+
+:where(.mvim-form-wrap .mvim-field--checkbox input[type="checkbox"]) {
+	flex: 0 0 auto;
+	width: 1.125em;
+	height: 1.125em;
+	margin: 0;
+	accent-color: #2271b1;
+}
+
+:where(.mvim-form-wrap .mvim-field--checkbox input[type="checkbox"]:focus-visible) {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
+}
+
+:where(.mvim-form-wrap .mvim-field--checkbox .mvim-label--inline) {
+	flex: 1 1 0;
+	min-width: 0;
+	margin-left: 0;
+}
+
+:where(.mvim-form-wrap .mvim-field--checkbox .mvim-error),
+:where(.mvim-form-wrap .mvim-field--checkbox .mvim-hint) {
+	flex-basis: 100%;
+}
+
+/* 送信ボタン（白い文字と #2271b1 は約5.2:1、マウスを重ねたときの #135e96 は約6.8:1）. */
+:where(.mvim-form-wrap .mvim-button) {
+	display: inline-block;
+	min-height: 2.75em;
+	margin: 0;
+	padding: 0.65em 2em;
+	border: 1px solid #2271b1;
+	border-radius: 4px;
+	background-color: #2271b1;
+	color: #fff;
+	font: inherit;
+	font-weight: 700;
+	line-height: 1.5;
+	cursor: pointer;
+}
+
+:where(.mvim-form-wrap .mvim-button:hover),
+:where(.mvim-form-wrap .mvim-button:active) {
+	border-color: #135e96;
+	background-color: #135e96;
+}
+
+:where(.mvim-form-wrap .mvim-button:focus-visible) {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
 }
 
 :where(.mvim-form-wrap .mvim-hint) {
@@ -72,6 +158,10 @@
 	font-weight: 600;
 }
 
+/*
+ * エラーの欄の赤い枠線。上の枠線・フォーカスの指定と詳細度は同じ 0 なので、
+ * 後に書いたこの指定が勝つ（フォーカス中も輪郭線は赤のまま）。この順番を入れ替えないこと.
+ */
 :where(.mvim-form-wrap .mvim-field--has-error) :where(input, select, textarea) {
 	border-color: #b32d2e;
 	outline-color: #b32d2e;
