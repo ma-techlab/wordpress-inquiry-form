@@ -123,7 +123,10 @@ composer install                # PHPCS・WPCS・PHPCompatibilityWP（開発用�
 composer run lint               # php -l
 vendor/bin/phpcs                # WordPress 規約と PHP 8.3 互換性（phpcs.xml.dist）
 bash bin/build-zip.sh           # dist/mervelta-inquiry-manager.zip
+bash bin/check-public.sh        # 公開してはいけない語が、ファイルと全履歴に無いか（push の前に実行）
 ```
+
+`bin/check-public.sh` は、`.git/info/forbidden-words`（1行に1語。push されない場所）の語を探します。リストが無い・空のときは、検査していないことを示すため 0 以外で終わります。commit のときにも同じ検査をするには、hook を作ります（hook は push されないため、clone ごとに作る）：`printf '#!/bin/sh\nexec bash bin/check-public.sh --staged\n' > .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit`
 
 | パス | 中身 |
 |---|---|
@@ -133,6 +136,7 @@ bash bin/build-zip.sh           # dist/mervelta-inquiry-manager.zip
 | `docs/TEST-CHECKLIST.md` | 手動確認の表 |
 | `docs/CODE-GUIDE.md` | 主な処理の解説 |
 | `composer.json`、`phpcs.xml.dist` | 検査の設定 |
+| `bin/check-public.sh` | 公開してはいけない語の検査 |
 | `blueprint.json` | WordPress Playground のデモの設定（ZIP には入らない） |
 
 ## 制作について
