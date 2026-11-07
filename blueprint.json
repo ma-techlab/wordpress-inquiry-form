@@ -1,0 +1,47 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "MERVELTA Inquiry Manager デモ",
+		"description": "見積依頼・問い合わせの受付と管理のプラグインを、架空のデータで試すためのデモ。",
+		"author": "ma-techlab",
+		"categories": [
+			"Demo"
+		]
+	},
+	"landingPage": "/wp-admin/admin.php?page=mvim-inquiries",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "setSiteLanguage",
+			"language": "ja"
+		},
+		{
+			"step": "setSiteOptions",
+			"options": {
+				"blogname": "（例）株式会社サンプル精工",
+				"timezone_string": "Asia/Tokyo"
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "git:directory",
+				"url": "https://github.com/OWNER/REPO",
+				"ref": "HEAD",
+				"path": "mervelta-inquiry-manager"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "mervelta-inquiry-manager"
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php\nrequire_once '/wordpress/wp-load.php';\n\n// 固定ページ「お問い合わせ」にフォームを置く.\nwp_insert_post(\n\tarray(\n\t\t'post_type'    => 'page',\n\t\t'post_status'  => 'publish',\n\t\t'post_title'   => 'お問い合わせ',\n\t\t'post_name'    => 'contact',\n\t\t'post_content' => \"<!-- wp:shortcode -->\\n[mvim_inquiry_form]\\n<!-- /wp:shortcode -->\",\n\t)\n);\n\n// 架空のデータ（example.com、「（例）」付きの会社名）を、状態を分けて入れる.\nglobal $wpdb;\n$table = MVIM_Installer::table_name();\n$rows  = array(\n\tarray( 'estimate', '（例）株式会社サンプル精工', '山田 太郎', 'taro@example.com', '03-1234-5678', \"SUS304 の板金加工、100個の見積をお願いします。\\n納期は12月末希望です。\", 'new', '', 1, 2 ),\n\tarray( 'question', '（例）有限会社みなと建設', '佐藤 花子', 'hanako@example.com', '', \"足場の部材について、在庫の有無を教えてください。\", 'in_progress', \"電話で在庫を確認中。\\n明日までに回答予定。\", 1, 26 ),\n\tarray( 'estimate', '（例）株式会社あおば電機', '鈴木 一郎', 'ichiro@example.com', '03-1234-5678', \"アルミの筐体を50台、図面を送付できます。\", 'done', '見積書を送付済み。', 1, 75 ),\n\tarray( 'other', '（例）かわせ精密株式会社', '高橋 次郎', 'jiro@example.com', '', \"工場見学の受け入れは可能でしょうか。\", 'new', '', 0, 120 ),\n);\nforeach ( $rows as $r ) {\n\t$at = wp_date( 'Y-m-d H:i:s', time() - $r[9] * HOUR_IN_SECONDS );\n\t$wpdb->insert(\n\t\t$table,\n\t\tarray(\n\t\t\t'inquiry_type' => $r[0],\n\t\t\t'company_name' => $r[1],\n\t\t\t'contact_name' => $r[2],\n\t\t\t'email'        => $r[3],\n\t\t\t'phone'        => $r[4],\n\t\t\t'message'      => $r[5],\n\t\t\t'status'       => $r[6],\n\t\t\t'staff_note'   => $r[7],\n\t\t\t'mail_sent'    => $r[8],\n\t\t\t'created_at'   => $at,\n\t\t\t'updated_at'   => $at,\n\t\t),\n\t\tarray( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s' )\n\t);\n}\n"
+		}
+	]
+}

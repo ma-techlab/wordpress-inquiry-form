@@ -6,7 +6,15 @@ WordPress 用の、見積依頼・問い合わせの受付と管理のプラグ�
 
 ## ブラウザで試す（WordPress Playground）
 
-（公開後に、ここへ WordPress Playground のリンクを置きます。インストールせずに、ブラウザの中で架空のデータを使って試せます。）
+（公開後に、ここへ WordPress Playground のリンクを置きます。）
+
+リンクを押すと、インストールせずに、ブラウザの中の WordPress でこのプラグインを試せます。設定は [`blueprint.json`](blueprint.json) にあります。
+
+- PHP 8.3、最新の WordPress（日本語）、タイムゾーンは東京。
+- 管理者でログインした状態で、「見積依頼」の一覧が開きます。架空のデータが4件（未対応・対応中・完了、通知失敗の1件を含む）入っています。
+- 固定ページ「お問い合わせ」（`/contact/`）に `[mvim_inquiry_form]` を置いてあります。送信すると一覧に増えます。
+- Playground の中のデータは、ブラウザのタブを閉じると消えます。
+- **メール**：Playground からは外部にメールを配信しません。送信すると「（通知失敗）」になる見込みで、その場合は「メールの送信に失敗しても、問い合わせは保存される」ことの実演になります（Playground の作りによっては成功扱いになることもあるため、公開後に確かめてここを直します）。
 
 ## 目的
 
@@ -125,6 +133,7 @@ bash bin/build-zip.sh           # dist/mervelta-inquiry-manager.zip
 | `docs/TEST-CHECKLIST.md` | 手動確認の表 |
 | `docs/CODE-GUIDE.md` | 主な処理の解説 |
 | `composer.json`、`phpcs.xml.dist` | 検査の設定 |
+| `blueprint.json` | WordPress Playground のデモの設定（ZIP には入らない） |
 
 ## 制作について
 
