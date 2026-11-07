@@ -2,11 +2,13 @@
 
 WordPress 用の、見積依頼・問い合わせの受付と管理のプラグイン（最小版）です。
 
+リポジトリ名（`wordpress-inquiry-form`）は内容が伝わる名前に、プラグインのスラッグ（`mervelta-inquiry-manager`）は他のプラグインとぶつからない名前にしています。
+
 > **個人開発のデモです。** ポートフォリオ用に作ったもので、顧客に納品したものではありません。画面やデータはすべて架空のもの（例：「（例）株式会社サンプル精工」、`example.com` のメールアドレス）です。
 
 ## ブラウザで試す（WordPress Playground）
 
-（公開後に、ここへ WordPress Playground のリンクを置きます。）
+**[WordPress Playground で開く](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/ma-techlab/wordpress-inquiry-form/main/blueprint.json)**
 
 リンクを押すと、インストールせずに、ブラウザの中の WordPress でこのプラグインを試せます。設定は [`blueprint.json`](blueprint.json) にあります。
 

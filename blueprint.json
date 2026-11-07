@@ -30,7 +30,7 @@
 			"step": "installPlugin",
 			"pluginData": {
 				"resource": "git:directory",
-				"url": "https://github.com/OWNER/REPO",
+				"url": "https://github.com/ma-techlab/wordpress-inquiry-form",
 				"ref": "HEAD",
 				"path": "mervelta-inquiry-manager"
 			},
