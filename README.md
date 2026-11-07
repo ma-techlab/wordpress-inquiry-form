@@ -80,7 +80,18 @@ WordPress 用の、見積依頼・問い合わせの受付と管理のプラグ�
 | `php -l` で全 PHP ファイルに文法エラーがない | WSL（PHP 8.5.4-0ubuntu1.5） | 済み（エラー0件） |
 | PHPCS（WordPress Coding Standards 3.4.1）でエラー0件 | WSL | 済み（エラー・警告0件。行単位の除外には、各行に理由を書いています） |
 | PHPCompatibilityWP（`testVersion 8.3-`）で問題0件 | WSL | 済み。ただし PHPCompatibility 9.3.5 は PHP 8.4 以降の構文を見つけられないため、8.4 以降の機能を使っていないことはコードを読んで確認しています |
-| 手動の確認（要件定義書 9章の1〜10。LocalWP、PHP 8.3） | [`docs/TEST-CHECKLIST.md`](docs/TEST-CHECKLIST.md) | **未実施**（結果は確認表に記入します） |
+| 手動の確認（要件定義書 9章の1〜10。LocalWP、PHP 8.3） | [`docs/TEST-CHECKLIST.md`](docs/TEST-CHECKLIST.md) | **一部実施**（0〜3-2。残りは実施予定） |
+
+手動で確認した範囲（2026-11-08。LocalWP 10.2.0、PHP 8.3.36、WordPress 7.1.4、Twenty Twenty-Five、Elementor 4.3.6、Chrome 157。プラグインは 0.1.0）：
+
+- ZIP から導入・有効化でき、テーブル（列12個）と DB の版 `1.0.0` ができる。
+- 設定画面で、誤った形式の通知先はエラーが1回だけ出て保存されず、正しい形式は保存される。
+- 固定ページと Elementor のショートコードウィジェットで、フォームが本文の位置に出る。Elementor の編集画面のプレビューも固まらない。
+- 必須の欄が空のとき、同じページで6項目のエラーの一覧が出る。
+- 正しい入力で保存され、成功後の URL に入力値が入らず、F5 で再送信にならない。全角の電話番号は半角になり、受付日時は東京時間。
+- Mailpit に通知が届き、宛先・件名・本文・Reply-To（アドレスだけ）が正しく、本文の URL で詳細が開く。
+
+未実施：無効化してもデータが残ること、通知に失敗したときの保存、入力エラー（メールの形式・文字数・電話番号の形式）と入力値の再表示、不正送信対策、一覧・詳細・更新、CSV、権限、XSS、削除時の後片付け、`debug.log` の確認。フォームの見た目を直した 0.1.1 も、これから確認します。
 
 ## 作らないもの（最小版）
 
@@ -118,7 +129,7 @@ bash bin/build-zip.sh           # dist/mervelta-inquiry-manager.zip
 | 要件 | AI が案を出し、作者本人が判断して決めた |
 | 実装 | Claude Code（AI のコーディング支援ツール） |
 | コードのレビュー | 別の Claude Code のセッションが行い、何を直すかは作者本人が判断した |
-| 動作確認・セキュリティの確認 | 作者本人が [`docs/TEST-CHECKLIST.md`](docs/TEST-CHECKLIST.md) の手順で行う（**現在は未実施**） |
+| 動作確認・セキュリティの確認 | 作者本人が [`docs/TEST-CHECKLIST.md`](docs/TEST-CHECKLIST.md) の手順で行う（**一部実施**：2026-11-08 に 0〜3-2。残りは実施予定） |
 | 説明 | 作者本人が [`docs/CODE-GUIDE.md`](docs/CODE-GUIDE.md) をもとに行う |
 
 ## ライセンス
